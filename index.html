@@ -2,38 +2,72 @@
 <html>
 <head>
   <title>Enter Your Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* Initial page style */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 40px;
+      background: linear-gradient(to right, #89f7fe, #66a6ff); /* You can replace this with your desired background */
+      color: #333;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
+
     input {
       font-size: 18px;
       padding: 10px;
-      width: 200px;
+      width: 220px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
     }
+
     button {
       font-size: 18px;
       padding: 10px 20px;
-      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
-    #result {
-      margin-top: 25px;
-      font-size: 20px;
-      font-weight: bold;
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Message page style */
+    .message-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-size: 28px;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      background: url('background.png'); /* Replace with your desired gradient or image */
+      no-repeat center center;
+      background-size:cover;
     }
   </style>
 </head>
 
 <body>
-  <h2>Enter Your Code</h2>
-  <input id="codeInput" placeholder="Type code here" />
-  <br><br>
-  <button onclick="lookup()">Submit</button>
-
-  <div id="result"></div>
+  <div id="inputPage">
+    <h2>Enter Your Code</h2>
+    <input id="codeInput" placeholder="Type code here" />
+    <br>
+    <button onclick="lookup()">Submit</button>
+  </div>
 
   <script>
     function lookup() {
@@ -48,10 +82,11 @@
       fetch(url)
         .then(response => response.text())
         .then(text => {
-          document.getElementById("result").innerText = text;
+          // Replace the current page with the message page
+          document.body.innerHTML = '<div class="message-page">' + text + '</div>';
         })
         .catch(err => {
-          document.getElementById("result").innerText = "Error loading message.";
+          alert("Error loading message");
         });
     }
   </script>
