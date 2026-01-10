@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enter Your Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Initial input page style */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background: linear-gradient(to right, #89f7fe, #66a6ff); /* Input page background */
+      color: #333;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input {
+      font-size: 18px;
+      padding: 10px;
+      width: 220px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Message page style */
+    .message-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+      padding: 10%; /* 10% margin on all sides */
+      font-size: 28px;
+      color: black; /* Black text */
+      text-align: center;
+      background: url('background.png') no-repeat center center; /* Background image */
+      background-size: 100% 100%; /* Stretch to fit horizontally and vertically */
+      overflow-wrap: break-word; /* Wrap long messages */
+      box-sizing: border-box; /* Padding included in width */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="inputPage">
+    <h2>Enter Your Code</h2>
+    <input id="codeInput" placeholder="Type code here" />
+    <br>
+    <button onclick="lookup()">Submit</button>
+  </div>
+
+  <script>
+    function lookup() {
+      var code = document.getElementById("codeInput").value;
+      if (!code) {
+        alert("Please enter a code");
+        return;
+      }
+
+      var url = "https://script.google.com/macros/s/AKfycbxCf-x5zqyhqdLD9nJnu0WbuLdxgEtfG-0jx5lXbr4sYIMwjv0AIkgDIMnkIwYOYOf2Og/exec?code=" + encodeURIComponent(code);
+
+      fetch(url)
+        .then(response => response.text())
+        .then(text => {
+          // Replace the current page with the message page
+          document.body.innerHTML = '<div class="message-page">' + text + '</div>';
+        })
+        .catch(err => {
+          alert("Error loading message");
+        });
+    }
+  </script>
+</body>
+</html>
