@@ -51,17 +51,22 @@
 
   height: 100vh;
   width: 100vw;
-  margin: 0;
+
+  background: url('background.png') no-repeat center center;
+  background-size: contain;   /* Keeps full image visible */
+  background-color: #000;     /* Optional border color */
+}
+
+.message-content {
+  max-width: 70%;
+  max-height: 70%;
+  padding: 30px;
 
   font-size: 28px;
   color: black;
   text-align: center;
 
-  background: url('background.png') no-repeat center center;
-  background-size: contain;     /* Keeps full image visible */
-  background-color:linear-gradient(to right, #89f7fe, #66a6ff);  /* Fill empty space if aspect differs */
-  padding: 0;
-  box-sizing: border-box;
+  overflow-wrap: break-word;
 }
     .message-box {
   max-width: 40%;
@@ -95,19 +100,27 @@
         .then(response => response.text())
         .then(text => {
           // Replace the current page with the message page
-          document.body.innerHTML =
+         
+document.body.innerHTML =
   '<div class="message-page">' +
-    '<div class="message-box">' + text + '</div>' +
+    '<div class="message-content">' + text + '</div>' +
   '</div>';
+          
         })
         .catch(err => {
           alert("Error loading message");
         });
     }
+
+    .message-content {
+  font-size: clamp(18px, 3vw, 32px);
+}
+    
   </script>
 </body>
 
 </html>
+
 
 
 
