@@ -89,7 +89,10 @@
         .then(response => response.text())
         .then(text => {
           // Replace the current page with the message page
-          document.body.innerHTML = '<div class="message-page">' + text + '</div>';
+          document.body.innerHTML =
+  '<div class="message-page">' +
+    '<div class="message-box">' + text + '</div>' +
+  '</div>';
         })
         .catch(err => {
           alert("Error loading message");
@@ -99,6 +102,7 @@
 </body>
 
 </html>
+
 
 
 
