@@ -44,44 +44,39 @@
     }
 
     /* Message page style */
-    .message-page {
+  .message-page {
   display: flex;
   justify-content: center;
   align-items: center;
-
   height: 100vh;
   width: 100vw;
   margin: 0;
+  background: linear-gradient(to right, #89f7fe, #66a6ff);
+}
 
-  font-size: 20px;
-  color: black;
-  text-align: center;
-
+/* This container keeps the same shape as your image */
+.image-frame {
+  position: relative;
+  width: min(90vw, 90vh * 0.75);   /* adjust ratio if needed */
+  aspect-ratio: 709 / 1004;            /* ⚠️ change this to match your image */
   background: url('background.png') no-repeat center center;
-  background-size: contain;     /* ✅ Keeps full image visible */
-  background-color: linear-gradient(to right, #89f7fe, #66a6ff);   /* Fill empty space if aspect differs */
-
-  padding: 0;
-  box-sizing: border-box;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.message-content {
+/* Message stays inside the image */
+.message-box {
   max-width: 70%;
-  max-height: 70%;
-  padding: 30px;
-
-  font-size: 28px;
-  color: black;
-  text-align: center;
-
-  overflow-wrap: break-word;
-}
-    .message-box {
-  max-width: 30%;
   padding: 20px 30px;
-  background: rgba(255, 255, 255, 0.75);  /* Soft readability layer */
+  background: rgba(255, 255, 255, 0.75);
   border-radius: 12px;
+  font-size: 26px;
+  text-align: center;
   line-height: 1.4;
+  word-wrap: break-word;
+
 }
   </style>
 </head>
@@ -109,9 +104,11 @@
         .then(text => {
           // Replace the current page with the message page
          
-document.body.innerHTML =
+  document.body.innerHTML =
   '<div class="message-page">' +
-    '<div class="message-box">' + text + '</div>' +
+    '<div class="image-frame">' +
+      '<div class="message-box">' + text + '</div>' +
+    '</div>' +
   '</div>';
           
         })
@@ -124,6 +121,7 @@ document.body.innerHTML =
 </body>
 
 </html>
+
 
 
 
