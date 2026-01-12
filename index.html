@@ -45,21 +45,25 @@
 
     /* Message page style */
     .message-page {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      width: 100vw;
-      margin: 0;
-      padding: 10%; /* 10% margin on all sides */
-      font-size: 28px;
-      color: black; /* Black text */
-      text-align: center;
-      background: url('background.png') no-repeat center center; /* Background image */
-      background-size: cover; /* Stretch to fit horizontally and vertically */
-      overflow-wrap: break-word; /* Wrap long messages */
-      box-sizing: border-box; /* Padding included in width */
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+
+  font-size: 28px;
+  color: black;
+  text-align: center;
+
+  background: url('background.png') no-repeat center center;
+  background-size: contain;     /* Keeps full image visible */
+  background-color: #ffffff;   /* Fill empty space if aspect differs */
+
+  padding: 0;
+  box-sizing: border-box;
+}
   </style>
 </head>
 
@@ -95,5 +99,6 @@
 </body>
 
 </html>
+
 
 
